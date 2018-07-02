@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% block menu_tarea %}class="active{% endblock %}"
+    <h1>lista de tarea</h1>
+    <ul>
+        {% for usuario in usuarios%}
+            <li> {{ usuario.username }} - {{ usuario.nombre }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

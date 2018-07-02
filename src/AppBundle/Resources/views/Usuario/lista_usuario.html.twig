@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{%block titulo%}Usuario{%endblock%}
+{% block menu_usuario %}class="active"{% endblock %}
+{% block body %}
+    <h1>Listas De Usuarios</h1>
+    <table class="table">
+        <thead>
+        <th>Nombre </th>
+        <th>Usuario </th>
+        <th>Acciones </th>
+        </thead>
+
+
+        <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.nombre }} </td>
+                <td>{{ usuario.username }} </td>
+                <td>
+                    <a class="btn btn-primary"href="{{ path('editar_usuario',{'id':usuario.id}) }}">Editar </a>
+                    <a class="btn btn-danger"onclick="eliminar('{{ usuario.id }}')"> Eliminar </a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <script>
+        function eliminar(id) {
+            var id = $('#id').val();
+            var nombre = $('#nombre').val();
+            var username = $('#username').val();
+
+            var data = {
+                nombre: nombre,
+                username: username
+            };
+            $.ajax({
+                url: '/app_dev.php/rest/usuario/' + id,
+                type: 'DELETE',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    console.log(response);
+                    window.location = '/app_dev.php/usuario'
+
+                },
+                error: function (err) {
+                    console.log(err);
+
+                }
+            });
+        }
+    </script>
+
+{% endblock %}

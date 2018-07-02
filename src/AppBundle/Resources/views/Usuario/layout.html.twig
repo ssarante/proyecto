@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta> charset="UTF-8"/>
+        <title>{% block title %}Taskapp{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('public/css/bootstrap.min.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('public/css/style.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('public/css/starter-template.css') }}"/>
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    </head>
+    <body>
+        {% block body %}
+            {{ include('menu.html.twig') }}
+        {% endblock %}
+    {% block javascripts%}
+        <script src="public/js/jquery-3.3.1.min.js"></script>
+        <script src="public/js/bootstrap.js"></script>
+    {% endblock %}
+    </body>
+</html>
